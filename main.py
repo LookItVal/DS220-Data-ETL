@@ -2,8 +2,12 @@ import pandas as pd
 import os
 
 def main():
-  normalizeFileNames()
+  # normalizeFileNames()
   df = combinedTimeSeries()
+  # convert date to datetime
+  df["Date"] = pd.to_datetime(df["Date"])
+  # sort by date
+  df = df.sort_values(by=["Date"])
   df.to_csv("Data_Exports/Combined_Time_Series.csv", index=False)
 
 
